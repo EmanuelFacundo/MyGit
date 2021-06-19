@@ -1,4 +1,5 @@
 import Axios from 'axios'
+import Cookies from 'js-cookie'
 
 const BASE_URL = 'https://api.github.com'
 
@@ -13,6 +14,7 @@ export function login(token) {
     })
     authAxios.get(`/user`, { username: token })
       .then(resp => {
+        Cookies.set("MyGitAccess", token, { expires: 2, path: '/' })
         dispatch({
           type: 'LOGIN',
           payload: resp.data
