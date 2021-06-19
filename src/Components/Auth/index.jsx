@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import Link from '@material-ui/core/Link'
 import { Input, Button } from '@material-ui/core'
 
+import { login } from '../Reducer/action'
+
 import { AuthBox, inputAuth } from './styles'
 
-export default function Auth() {
+function Auth(props) {
   const styles = inputAuth()
+  const [token, setToken] = useState("")
+  console.log(props.authenticating)
   return (
     <AuthBox>
       <h2>Use you GitHub <Link
@@ -17,8 +23,11 @@ export default function Auth() {
       <Input className={styles.user}
         type="text"
         placeholder="Enter you personal access token"
+        value={token}
+        onChange={e => setToken(e.target.value)}
       />
       <Button
+        onClick={() => props.login(token)}
         variant="contained"
         className={styles.buttonLogin}
         color="secondary"
@@ -34,3 +43,12 @@ export default function Auth() {
     </AuthBox>
   )
 }
+
+const mapStateToProps = state => ({
+  authenticating: state.user.state
+})
+const mapDispatchToProps = dispatch => bindActionCreators({
+  login
+}, dispatch)
+
+export default connect(mapStateToProps,mapDispatchToProps)(Auth)
