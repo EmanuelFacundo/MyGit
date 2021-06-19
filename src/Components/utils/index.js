@@ -1,4 +1,5 @@
-const windowWidth = document.documentElement.clientWidth
+export const windowWidth = document.documentElement.clientWidth
+export const windowHeight = document.documentElement.clientHeight
 
 export function fontSize(size) {
   if (windowWidth < 360) {

@@ -11,7 +11,7 @@ import { AuthBox, inputAuth } from './styles'
 function Auth(props) {
   const styles = inputAuth()
   const [token, setToken] = useState("")
-  console.log(props.authenticating)
+  
   return (
     <AuthBox>
       <h2>Use you GitHub <Link
@@ -44,11 +44,8 @@ function Auth(props) {
   )
 }
 
-const mapStateToProps = state => ({
-  authenticating: state.user.state
-})
 const mapDispatchToProps = dispatch => bindActionCreators({
   login
 }, dispatch)
 
-export default connect(mapStateToProps,mapDispatchToProps)(Auth)
+export default connect(null,mapDispatchToProps)(Auth)
