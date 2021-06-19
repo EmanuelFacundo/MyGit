@@ -1,9 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-ReactDOM.render(
-  <div>
 
-  </div>,
+import Routes from './Components/Routes'
+
+
+import Global from './styles.js'
+
+ReactDOM.render(
+  <>
+    <Global />
+    <Routes />
+  </>,
   document.getElementById('root')
 );
